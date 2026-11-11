@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대통령실 공식 브리핑 - 허쥬(HUJU) 특별 보고서</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti for OX Quiz Success Effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome for Presidential Emblems & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        presidential: {
+                            navy: '#0b192c',
+                            darkNavy: '#060e1a',
+                            gold: '#d4af37',
+                            lightGold: '#f3e5ab',
+                            burgundy: '#800020',
+                            accent: '#1e3a8a'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'Cambria', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Card Flip Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Presidential Seals & Borders */
+        .presidential-border {
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Gold Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff2a3 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060e1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        /* Shake effect for Quiz wrong answer */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+        .animate-shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+    </style>
+</head>
+<body class="bg-presidential-darkNavy text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-presidential-gold selection:text-black">
+
+    <!-- Top Presidential Header Bar -->
+    <header class="bg-presidential-navy border-b-2 border-presidential-gold sticky top-0 z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Phoenix-like Seal Icon -->
+                <div class="w-10 h-10 rounded-full border-2 border-presidential-gold flex items-center justify-center bg-presidential-darkNavy text-presidential-gold shadow-md">
+                    <i class="fa-solid fa-crown text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-presidential-gold block font-semibold">Rep. of HUJU Official</span>
+                    <h1 class="text-lg md:text-xl font-bold font-serif text-white tracking-wide">대통령실 최고기밀 브리핑룸</h1>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center space-x-2 text-xs text-presidential-lightGold bg-presidential-darkNavy px-3 py-1.5 rounded-full border border-presidential-gold/40">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span>보안등급: Top Secret</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 py-8 w-full flex-grow space-y-12">
+
+        <!-- Banner / Hero Section -->
+        <section class="text-center space-y-4 bg-gradient-to-b from-presidential-navy to-presidential-darkNavy p-8 rounded-2xl presidential-border relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 opacity-10 text-presidential-gold pointer-events-none">
+                <i class="fa-solid fa-landmark text-9xl"></i>
+            </div>
+            
+            <div class="inline-block bg-presidential-burgundy text-amber-200 text-xs px-4 py-1 rounded-full border border-amber-400/40 uppercase tracking-widest mb-2 font-semibold">
+                긴급 안보 보고서 #2026-HUJU
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl font-black font-serif gold-gradient-text tracking-tight">
+                주요 인사 프로필: [ 허쥬 ]
+            </h2>
+            
+            <p class="text-slate-300 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                본 웹페이지는 대한민국 최고 핵심 인사인 <strong class="text-presidential-gold font-bold">"허쥬"</strong>에 대한 대국민 특별 브리핑 자료입니다. 
+                인가된 인원만 아래 기밀 정보를 열람하십시오.
+            </p>
+
+            <div class="pt-2 flex justify-center space-x-6 text-xs text-slate-400">
+                <div class="flex items-center space-x-1">
+                    <i class="fa-solid fa-user-shield text-presidential-gold"></i>
+                    <span>신원 보증 완료</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <i class="fa-solid fa-stamp text-presidential-gold"></i>
+                    <span>대통령 직인 날인</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Top 3 Favorites (Interactive Flip Cards) -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <h3 class="text-2xl font-serif font-bold text-presidential-gold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-star text-sm"></i>
+                    <span>허쥬의 3대 핵심 국정 관심사</span>
+                    <i class="fa-solid fa-star text-sm"></i>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400">카드를 터치(클릭)하면 대통령실 비공개 기밀 사유가 공개됩니다.</p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Game -->
+                <div class="perspective-1000 h-72 cursor-pointer group" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-xl">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-presidential-navy border-2 border-presidential-gold/60 rounded-xl p-6 flex flex-col justify-between items-center text-center group-hover:border-presidential-gold transition-colors">
+                            <div class="w-16 h-16 rounded-full bg-presidential-darkNavy border border-presidential-gold flex items-center justify-center text-presidential-gold text-2xl mt-4">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-presidential-lightGold tracking-widest uppercase">Secret File #01</span>
+                                <h4 class="text-2xl font-bold font-serif text-white mt-1">게임 (GAME)</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">
+                                <i class="fa-solid fa-hand-pointer mr-1"></i>터치하여 기밀 해제
+                            </span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-presidential-burgundy to-slate-900 border-2 border-presidential-gold rounded-xl p-6 flex flex-col justify-center items-center text-center space-y-3">
+                            <i class="fa-solid fa-shield-halved text-presidential-gold text-2xl"></i>
+                            <h5 class="text-lg font-bold text-amber-200 font-serif">국정 사유: E-스포츠 통치론</h5>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                "글로벌 사이버 평화 유지 및 멘탈 강화를 위한 필수 국정 수행 활동! 렉(Lag) 없는 세상이 곧 태평성대입니다."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Food -->
+                <div class="perspective-1000 h-72 cursor-pointer group" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-xl">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-presidential-navy border-2 border-presidential-gold/60 rounded-xl p-6 flex flex-col justify-between items-center text-center group-hover:border-presidential-gold transition-colors">
+                            <div class="w-16 h-16 rounded-full bg-presidential-darkNavy border border-presidential-gold flex items-center justify-center text-presidential-gold text-2xl mt-4">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-presidential-lightGold tracking-widest uppercase">Secret File #02</span>
+                                <h4 class="text-2xl font-bold font-serif text-white mt-1">음식 (FOOD)</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">
+                                <i class="fa-solid fa-hand-pointer mr-1"></i>터치하여 기밀 해제
+                            </span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-amber-900 to-slate-900 border-2 border-presidential-gold rounded-xl p-6 flex flex-col justify-center items-center text-center space-y-3">
+                            <i class="fa-solid fa-crown text-presidential-gold text-2xl"></i>
+                            <h5 class="text-lg font-bold text-amber-200 font-serif">국정 사유: 식도락 안보관</h5>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                "금강산도 식후경! 맛있는 음식이 공급되지 않으면 허쥬 최고통치권자의 미소가 유지되지 않아 국가적 손실이 발생합니다."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Movie -->
+                <div class="perspective-1000 h-72 cursor-pointer group" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-xl">
+                        <!-- Front -->
+                        <div class="absolute w-full h-full backface-hidden bg-presidential-navy border-2 border-presidential-gold/60 rounded-xl p-6 flex flex-col justify-between items-center text-center group-hover:border-presidential-gold transition-colors">
+                            <div class="w-16 h-16 rounded-full bg-presidential-darkNavy border border-presidential-gold flex items-center justify-center text-presidential-gold text-2xl mt-4">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-presidential-lightGold tracking-widest uppercase">Secret File #03</span>
+                                <h4 class="text-2xl font-bold font-serif text-white mt-1">영화 (MOVIE)</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">
+                                <i class="fa-solid fa-hand-pointer mr-1"></i>터치하여 기밀 해제
+                            </span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-blue-900 to-slate-900 border-2 border-presidential-gold rounded-xl p-6 flex flex-col justify-center items-center text-center space-y-3">
+                            <i class="fa-solid fa-clapperboard text-presidential-gold text-2xl"></i>
+                            <h5 class="text-lg font-bold text-amber-200 font-serif">국정 사유: 시네마 시각 확장</h5>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                "2시간 동안 타인의 삶과 세계관을 탐구하며 최고 정책 결정 능력을 다지는 숭고한 영감 획득 과정입니다."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: OX Quiz (Presidential Security Clearance Quiz) -->
+        <section class="bg-presidential-navy p-6 sm:p-8 rounded-2xl presidential-border space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs text-presidential-gold uppercase tracking-widest font-semibold">[ 대국민 안보 신원 검증 ]</span>
+                <h3 class="text-2xl font-serif font-bold text-white">허쥬 청문회 OX 퀴즈</h3>
+                <p class="text-slate-300 text-sm">아래의 진술을 읽고 허쥬에 대한 진실을 판가름해 주십시오.</p>
+            </div>
+
+            <!-- Quiz Box -->
+            <div class="bg-presidential-darkNavy p-6 rounded-xl border border-presidential-gold/30 text-center space-y-6" id="quizContainer">
+                <div class="space-y-2">
+                    <span class="inline-block bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs px-3 py-1 rounded-full">질문 #01</span>
+                    <h4 class="text-xl sm:text-2xl font-bold text-white">"허쥬는 잠이 많다."</h4>
+                </div>
+
+                <!-- OX Buttons -->
+                <div class="flex justify-center space-x-6">
+                    <button onclick="checkAnswer('O')" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-emerald-900/40 border-2 border-emerald-500 hover:bg-emerald-800/60 transition-all flex flex-col items-center justify-center group shadow-lg active:scale-95">
+                        <span class="text-4xl font-black text-emerald-400 group-hover:scale-110 duration-200">O</span>
+                        <span class="text-xs text-emerald-300 mt-1">그렇다 (참)</span>
+                    </button>
+                    <button onclick="checkAnswer('X')" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-rose-900/40 border-2 border-rose-500 hover:bg-rose-800/60 transition-all flex flex-col items-center justify-center group shadow-lg active:scale-95">
+                        <span class="text-4xl font-black text-rose-400 group-hover:scale-110 duration-200">X</span>
+                        <span class="text-xs text-rose-300 mt-1">아니다 (거짓)</span>
+                    </button>
+                </div>
+
+                <!-- Quiz Feedback Modal/Box -->
+                <div id="quizResult" class="hidden p-4 rounded-lg text-sm font-semibold transition-all"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: Game Recommendation Briefing System (10+ Games) -->
+        <section class="bg-gradient-to-br from-presidential-navy to-slate-900 p-6 sm:p-8 rounded-2xl presidential-border space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs text-presidential-gold uppercase tracking-widest font-semibold">[ 최고통치권자 특명 ]</span>
+                <h3 class="text-2xl font-serif font-bold text-white">오늘의 게임 추천 하사품</h3>
+                <p class="text-slate-300 text-sm">대통령실 중앙 컴퓨터가 국민을 위해 엄선한 게임을 무작위로 추천합니다.</p>
+            </div>
+
+            <div class="flex flex-col items-center justify-center space-y-6">
+                <!-- Display Box -->
+                <div id="gameDisplay" class="w-full max-w-md bg-presidential-darkNavy border-2 border-presidential-gold/50 rounded-xl p-6 text-center shadow-inner min-h-[140px] flex flex-col items-center justify-center space-y-2">
+                    <i class="fa-solid fa-dice text-3xl text-presidential-gold animate-bounce"></i>
+                    <p class="text-slate-400 text-sm">아래 버튼을 눌러 추천 게임을 확인하세요.</p>
+                </div>
+
+                <!-- Random Button -->
+                <button onclick="getRandomGame()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-presidential-gold to-yellow-600 hover:from-yellow-400 hover:to-amber-600 text-slate-950 font-bold font-serif text-lg rounded-xl shadow-xl border border-yellow-300 transition-all transform active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                    <span>게임 추천 무작위 뽑기</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-presidential-darkNavy border-t border-presidential-gold/30 py-6 text-center text-xs text-slate-400 space-y-2">
+        <div class="flex justify-center items-center space-x-2">
+            <i class="fa-solid fa-landmark text-presidential-gold"></i>
+            <span class="font-serif text-slate-300">대통령실 정보기획관실 검인 완료</span>
+        </div>
+        <p>© 2026 Republic of HUJU. All rights reserved. 개인정보가 철저히 보호되는 안전한 페이지입니다.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Flip Card Functionality
+        function flipCard(cardElement) {
+            const innerCard = cardElement.querySelector('.card-inner');
+            innerCard.classList.toggle('rotate-y-180');
+        }
+
+        // 2. OX Quiz Logic
+        function checkAnswer(answer) {
+            const resultBox = document.getElementById('quizResult');
+            const quizContainer = document.getElementById('quizContainer');
+
+            resultBox.classList.remove('hidden', 'bg-emerald-950', 'text-emerald-200', 'border-emerald-500', 'bg-rose-950', 'text-rose-200', 'border-rose-500');
+            quizContainer.classList.remove('animate-shake');
+
+            if (answer === 'O') {
+                // Correct Answer
+                resultBox.classList.add('bg-emerald-950', 'text-emerald-200', 'border', 'border-emerald-500');
+                resultBox.innerHTML = `
+                    <div class="space-y-1">
+                        <p class="text-lg font-bold text-emerald-400">🎉 정답입니다! (국정 인가 승인)</p>
+                        <p>맞습니다 허쥬는 푹 자야 원활하게 수행할 수 있는 '수면 필수형'입니다!</p>
+                    </div>
+                `;
+
+                // Confetti Explosion
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                // Wrong Answer
+                resultBox.classList.add('bg-rose-950', 'text-rose-200', 'border', 'border-rose-500');
+                resultBox.innerHTML = `
+                    <div class="space-y-1">
+                        <p class="text-lg font-bold text-rose-400">🚨 오답입니다! (안보 경보 발령)</p>
+                        <p>허쥬의 잠 수치 추산 실패! 허쥬는 수면 부족 시 국정 수행력이 저하되므로 잠이 매우 많습니다.</p>
+                    </div>
+                `;
+                
+                // Shake Animation for feedback
+                setTimeout(() => {
+                    quizContainer.classList.add('animate-shake');
+                }, 10);
+            }
+        }
+
+        // 3. Random Game Generator Logic (12 Games Prepared)
+        const gameList = [
+            { title: "리그 오브 레전드", genre: "MOBA", desc: "국정 운영급 팀워크와 전략적 판단력을 기르는 스포츠!" },
+            { title: "발로란트", genre: "FPS", desc: "대통령실의 신속 정확한 사격술과 반응 속도 단련!" },
+            { title: "마인크래프트", genre: "샌드박스", desc: "허쥬 제국의 웅장한 수도를 직접 건설해보자!" },
+            { title: "오버워치 2", genre: "팀 FPS", desc: "화물 수송은 곧 국가적 물류 안보 프로젝트!" },
+            { title: "원신", genre: "오픈월드 RPG", desc: "티바트 대륙까지 확장되는 허쥬의 영향력 탐험!" },
+            { title: "배틀그라운드", genre: "배틀로얄", desc: "최후의 1인이 되어 치킨으로 국정 만찬을 즐기자!" },
+            { title: "스타듀밸리", genre: "귀농 힐링", desc: "지친 국정 업무 뒤에 찾아오는 평화로운 힐링 귀농생활!" },
+            { title: "메이플스토리", genre: "MMORPG", desc: "메이플 월드의 평화를 지키는 장기 프로젝트!" },
+            { title: "로스트아크", genre: "MMORPG", desc: "아크를 찾아 세계를 구하는 대서사시급 통치!" },
+            { title: "어몽 어스", genre: "심리 추리", desc: "대통령실 내부의 임포스터를 찾아내는 날카로운 직관!" },
+            { title: "젤다의 전설", genre: "액션 어드벤처", desc: "모험심과 지혜를 겨루는 최고 존엄 하이랄 탐험!" }
+            { title: "CS 2", genre: "MOBA", desc: "국정 운영급 팀워크와 전략적 판단력을 기르는 스포츠!" },
+        ];
+
+        function getRandomGame() {
+            const display = document.getElementById('gameDisplay');
+            
+            // Random Index
+            const randomIndex = Math.floor(Math.random() * gameList.length);
+            const selectedGame = gameList[randomIndex];
+
+            // Display with Animation Effect
+            display.innerHTML = `
+                <div class="animate-fade-in space-y-2">
+                    <span class="text-xs bg-presidential-gold text-slate-950 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        ${selectedGame.genre}
+                    </span>
+                    <h4 class="text-2xl font-bold font-serif text-white text-amber-300">
+                        ${selectedGame.title}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-xs mx-auto">
+                        "${selectedGame.desc}"
+                    </p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
